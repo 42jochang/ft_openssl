@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/23 01:35:15 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/25 20:35:31 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+int		ft_strequ(char const *s1, char const *s2)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
-
-extern const t_dispatch	g_select[];
-
-#endif
+	return ((s1 && s2 && !ft_strcmp(s1, s2)) ? 1 : 0);
+}

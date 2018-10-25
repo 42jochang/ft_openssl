@@ -12,29 +12,13 @@
 
 #include "ft_ssl.h"
 
-void	display_usage(void)
-{
-	ft_putstr("usage: ./ft_ssl command [-pqr] [-s string] [files...]\n");
-}
-
 void	display_invoption(char *hash, char invalid)
 {
 	ft_putstr(hash);
 	ft_putstr(": illegal option -- ");
 	ft_putchar(invalid);
 	ft_putchar('\n');
-	display_usage();
-}
-
-void	display_invcommand(char *invalid)
-{
-	ft_putstr("ft_ssl: Error: '");
-	ft_putstr(invalid);
-	ft_putstr("' is an invalid command.\n\n");
-	ft_putstr("Standard commands:\n\n");
-	ft_putstr("Message Digest commands:\n");
-	ft_putstr("md5\nsha256\nsha224\nsha512\nsha384\n\n");
-	ft_putstr("Cipher commands:\n");
+	err_usage(1);
 }
 
 void	display_invfile(char *hash, char *file_name)

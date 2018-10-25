@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/22 23:48:59 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/23 00:09:12 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+void	*ft_memalloc(size_t size)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	void	*temp;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	temp = (void*)malloc(size);
+	NULL_CHECK(!temp);
+	ft_bzero(temp, size);
+	return (temp);
+}

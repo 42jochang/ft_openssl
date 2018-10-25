@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/24 01:16:23 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/24 01:22:34 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+void	ft_putchar_fd(char c, int fd)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
-
-extern const t_dispatch	g_select[];
-
-#endif
+	write(fd, &c, 1);
+}

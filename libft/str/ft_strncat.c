@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/18 23:39:47 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/20 22:39:05 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	size_t	i;
+	size_t	k;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	i = 0;
+	k = 0;
+	while (s1[i])
+		i++;
+	while (s2[k] && k < n)
+		s1[i++] = s2[k++];
+	s1[i] = '\0';
+	return (s1);
+}

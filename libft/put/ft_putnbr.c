@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/19 01:27:31 by jochang           #+#    #+#             */
+/*   Updated: 2018/05/25 17:51:46 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+void	ft_putnbr(int n)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
-
-extern const t_dispatch	g_select[];
-
-#endif
+	IF_TRUE(n < 0, ft_putchar('-'));
+	n *= (n > 0 ? -1 : 1);
+	IF_TRUE(n <= -10, ft_putnbr(-(n / 10)));
+	ft_putchar('0' - n % 10);
+}

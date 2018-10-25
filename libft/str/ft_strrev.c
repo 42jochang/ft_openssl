@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/24 00:10:11 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/24 00:13:07 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_strrev(char *str)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	int		i;
+	int		k;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	i = -1;
+	k = ft_strlen(str);
+	while (++i < --k)
+	{
+		str[i] ^= str[k];
+		str[k] ^= str[i];
+		str[i] ^= str[k];
+	}
+	return (str);
+}

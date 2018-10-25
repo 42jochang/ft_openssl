@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/18 21:41:49 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/20 00:45:13 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+void	*ft_memset(void *b, int c, size_t len)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	unsigned char	*dst;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	dst = (unsigned char*)b;
+	while (len--)
+		dst[len] = c;
+	return (b);
+}

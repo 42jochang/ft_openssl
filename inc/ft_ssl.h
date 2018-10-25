@@ -14,7 +14,7 @@
 # define FT_SSL_H
 
 # include <fcntl.h>
-# include "../libft/libft.h"
+# include "../libft/inc/libft.h"
 # include "md5.h"
 # include "sha256.h"
 # include "sha224.h"
@@ -32,19 +32,15 @@ typedef struct	s_flags
 }				t_flags;
 
 void			arg_handler(int ac, char **av, t_flags flags);
-int32_t			get_hash(char *s);
-int32_t			get_hash_size(int32_t hash_type);
-void			*hash_selector(int32_t hash_type, char *file_name, char *str);
+int32_t			get_hash_size(char *cmd);
+void			*hash_selector(char *cmd, char *file_name, char *str);
 
-t_flags			init_flags(void);
-t_flags			set_flags(char c, t_flags flags);
 t_flags			get_flags(int32_t ac, char **av);
-void			p_flag(int32_t toggle, int32_t hash_num);
-void			s_flag(int32_t hash_num, char *hash_type, t_flags flags);
 
-void			display_usage(void);
+void			err_usage(int ac);
+void			err_invcommand(char *cmd);
+
 void			display_invoption(char *hash, char invalid);
-void			display_invcommand(char *invalid);
 void			display_invfile(char *hash, char *file_name);
 void			print_memory(uint32_t *digest, size_t size);
 void			print_ssl(char *hash_type, t_flags flags,

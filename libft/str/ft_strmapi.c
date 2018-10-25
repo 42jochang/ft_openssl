@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/23 01:30:15 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/26 07:40:06 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	char	*new;
+	int		i;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	i = -1;
+	if (s && f)
+	{
+		NULL_CHECK(!(new = (char*)malloc(ft_strlen(s) + 1)));
+		while (s[++i])
+			new[i] = f(i, s[i]);
+		new[i] = '\0';
+		return (new);
+	}
+	return (NULL);
+}

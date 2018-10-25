@@ -12,12 +12,12 @@
 
 #include "ft_ssl.h"
 
-void	print_ssl(char *hash_type, t_flags flags, char *input,
+void	print_ssl(char *cmd, t_flags flags, char *input,
 				void *output)
 {
 	char	*ht;
 
-	ht = ft_strupper(hash_type);
+	ht = ft_strupper(cmd);
 	if (input && !flags.r && !flags.q)
 	{
 		ft_putstr(ht);
@@ -27,7 +27,7 @@ void	print_ssl(char *hash_type, t_flags flags, char *input,
 		(flags.s ? ft_putstr("\"") : 1);
 		ft_putstr(") = ");
 	}
-	ft_printmemory(output, get_hash_size(get_hash(hash_type)), 0, 0);
+	ft_printmemory(output, get_hash_size(cmd), 0, 0);
 	if (input && flags.r && !flags.q)
 	{
 		ft_putchar(' ');

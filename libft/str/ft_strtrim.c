@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/23 02:00:33 by jochang           #+#    #+#             */
+/*   Updated: 2018/05/17 16:50:32 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_strtrim(char const *s)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	char	*new;
+	int		i;
+	int		len;
+	int		j;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	NULL_CHECK(!s);
+	i = 0;
+	len = ft_strlen(s);
+	while (ft_isspace(s[i]))
+		i++;
+	while (ft_isspace(s[len - 1]))
+		len--;
+	NULL_CHECK(!(new = (char*)ft_memalloc(len - i >= 0 ? len - i + 1 : 1)));
+	j = -1;
+	while (++j < len - i)
+		new[j] = s[i + j];
+	new[j] = '\0';
+	return (new);
+}

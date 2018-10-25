@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_getstdin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/06/14 16:15:25 by jochang           #+#    #+#             */
+/*   Updated: 2018/08/08 21:54:12 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_getstdin(void)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	int		ret;
+	char	*buf;
+	char	*str;
+	char	*tmp;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	str = (char*)ft_memalloc(0);
+	buf = (char*)ft_memalloc(65);
+	while ((ret = read(0, buf, BUFF_SIZE)) > 0)
+	{
+		buf[ret] = '\0';
+		tmp = ft_strjoin(str, buf);
+		free(str);
+		str = tmp;
+	}
+	free(buf);
+	return (str);
+}

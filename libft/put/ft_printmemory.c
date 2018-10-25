@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_printmemory.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/07/01 09:10:06 by jochang           #+#    #+#             */
+/*   Updated: 2018/07/05 03:27:58 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+void	ft_printmemory(const void *addr, size_t size, int split, int nl)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	char	*hex;
+	uint8_t	*x;
+	size_t	i;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	hex = "0123456789abcdef";
+	i = -1;
+	x = (uint8_t*)addr;
+	while (++i < size)
+	{
+		ft_putchar(hex[(x[i] & 0xF0) >> 4]);
+		ft_putchar(hex[x[i] & 0x0F]);
+		IF_TRUE(split, ft_putchar(' '));
+		IF_TRUE(nl && !((i + 1) % nl), ft_putchar('\n'));
+	}
+}

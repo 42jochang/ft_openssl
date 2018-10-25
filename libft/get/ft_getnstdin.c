@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_getnstdin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/06/29 10:01:10 by jochang           #+#    #+#             */
+/*   Updated: 2018/08/08 14:39:31 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+int		ft_getnstdin(int n, char **string)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	char	buf[n];
+	char	*ptr;
+	int		len;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	len = 0;
+	ptr = &buf[0];
+	while (read(0, ptr, 1) > 0)
+	{
+		len++;
+		ptr++;
+		BREAK_CHECK(len >= n);
+	}
+	ft_memcpy(*string, buf, len);
+	return (len);
+}

@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/04/19 01:07:02 by jochang           #+#    #+#             */
+/*   Updated: 2018/04/20 23:13:34 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+char	*ft_strstr(const char *str, const char *to_find)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
+	int i;
+	int k;
 
-extern const t_dispatch	g_select[];
-
-#endif
+	i = 0;
+	if (!*to_find)
+		return ((char*)str);
+	while (str[i])
+	{
+		k = 0;
+		while (to_find[k] == str[i + k])
+			if (!to_find[++k])
+				return ((char*)(&str[i]));
+		i++;
+	}
+	return (NULL);
+}

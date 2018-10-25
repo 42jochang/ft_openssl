@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispatch.h                                         :+:      :+:    :+:   */
+/*   ft_swapendian64.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jochang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:46:17 by jochang           #+#    #+#             */
-/*   Updated: 2018/08/08 16:06:20 by jochang          ###   ########.fr       */
+/*   Created: 2018/07/04 10:44:06 by jochang           #+#    #+#             */
+/*   Updated: 2018/08/08 14:39:45 by jochang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPATCH_H
-# define DISPATCH_H
+#include "../inc/libft.h"
 
-# define OPT_COUNT 5
-
-typedef void	*(*t_fun) (char *, char *);
-
-typedef struct	s_dispatch
+uint64_t	ft_swapendian64(uint64_t i)
 {
-	char		*cmd;
-	int			size;
-	t_fun		s;
-}				t_dispatch;
-
-extern const t_dispatch	g_select[];
-
-#endif
+	i = (i & 0x00000000FFFFFFFF) << 32 | (i & 0xFFFFFFFF00000000) >> 32;
+	i = (i & 0x0000FFFF0000FFFF) << 16 | (i & 0xFFFF0000FFFF0000) >> 16;
+	i = (i & 0x00FF00FF00FF00FF) << 8 | (i & 0xFF00FF00FF00FF00) >> 8;
+	return (i);
+}
